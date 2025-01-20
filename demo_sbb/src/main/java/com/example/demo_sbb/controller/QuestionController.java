@@ -19,6 +19,6 @@ public class QuestionController {
     public String questionList(Model model) {
         List<QuestionEntity> questionList = questionRepository.findAll();
         model.addAttribute("questionList", questionList);
-        return "questionList";
+        return "question_list";
     }
 }
