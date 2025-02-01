@@ -6,6 +6,8 @@
     <title>Title</title>
 </head>
 <body>
+    <!-- 네비게이션바 -->
+    <nav th:replace="~{navbarFragment}"></nav>
     <div class="container my-3">
         <!-- 질문 -->
         <h2 class="border-bottom py-2" th:text="${question.subject}"></h2>
