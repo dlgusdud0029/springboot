@@ -3,6 +3,7 @@ package com.example.demo_sbb.controller;
 import com.example.demo_sbb.DataNotFoundException;
 import com.example.demo_sbb.Services.QuestionService;
 import com.example.demo_sbb.entity.QuestionEntity;
+import com.example.demo_sbb.form.AnswerForm;
 import com.example.demo_sbb.form.QuestionForm;
 import com.example.demo_sbb.repository.QuestionRepository;
 import jakarta.validation.Valid;
@@ -30,7 +31,7 @@ public class QuestionController {
     }
 
     @GetMapping(value = "/detail/{id}")
-    public String detail(Model model, @PathVariable("id") Integer id) throws DataNotFoundException {
+    public String detail(Model model, @PathVariable("id") Integer id, AnswerForm answerForm) throws DataNotFoundException {
         QuestionEntity question = this.questionService.getQuestion(id);
         model.addAttribute("question", question);
         return "question_detail";
