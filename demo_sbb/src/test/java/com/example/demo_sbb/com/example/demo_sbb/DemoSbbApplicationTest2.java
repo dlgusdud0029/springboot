@@ -1,5 +1,6 @@
 package com.example.demo_sbb;
 
+import com.example.demo_sbb.Services.QuestionService;
 import com.example.demo_sbb.entity.AnswerEntity;
 import com.example.demo_sbb.entity.QuestionEntity;
 import com.example.demo_sbb.repository.AnswerRepository;
@@ -7,6 +8,7 @@ import com.example.demo_sbb.repository.QuestionRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.stubbing.Answer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
@@ -23,10 +25,19 @@ class DemoSbbApplicationTests2 {
     private QuestionRepository questionRepository;
 
     @Autowired
+    private QuestionService questionService;
+
+    @Autowired
     private AnswerRepository answerRepository;
 
     @Test
     void testJpa() {
+        // 테스트 더미 데이터 넣기
+        for (int i = 1; i <= 300; i++) {
+            String subject = String.format("테스트 데이터입니다:[%03d]", i);
+            String content = "내용무";
+            this.questionService.create(subject, content);
+        }
         // 1. findAll 메서드
         // 데이터베이스에 저장된 데이터의 사이즈를 조회하여 우리가 넣은 데이터 크기만큼 들어가 있는지 확인하는 테스트
         // findAll() 메소드를 통해 데이터 모두 조회 = SELECT * FROM QUESTION_ENTITY
